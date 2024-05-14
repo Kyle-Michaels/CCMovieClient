@@ -14,5 +14,12 @@
   "bugs": {
     "url": "https://github.com/Kyle-Michaels/CCMovieClient/issues"
   },
-  "homepage": "https://github.com/Kyle-Michaels/CCMovieClient#readme"
+  "homepage": "https://github.com/Kyle-Michaels/CCMovieClient#readme",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
+  }
 }
