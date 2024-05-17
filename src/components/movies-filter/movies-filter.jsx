@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react/redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import { setFilter } from '../../redux/reducers/movies';
 
