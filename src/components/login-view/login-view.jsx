@@ -17,7 +17,7 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password
     };
 
-    fetch(process.env.CONNECTION_URI + "login", {
+    fetch(process.env.CONNECTION_URI + "/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

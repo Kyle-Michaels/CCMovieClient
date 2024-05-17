@@ -16,7 +16,7 @@ export const SignupView = () => {
       Email: email,
       Birthday: birthday
     };
-    fetch(process.env.CONNECTION_URI + 'users', {
+    fetch(process.env.CONNECTION_URI + '/users', {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

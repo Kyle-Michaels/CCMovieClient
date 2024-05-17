@@ -35,7 +35,7 @@ export const MainView = () => {
     if (!token) {
       return;
     }
-    fetch(process.env.CONNECTION_URI + 'movies', {
+    fetch(process.env.CONNECTION_URI + '/movies', {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())

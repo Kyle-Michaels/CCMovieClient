@@ -23,7 +23,7 @@ export const ProfileView = () => {
       Email: email,
       Birthday: birthday
     };
-    fetch(process.env.CONNECTION_URI + `users/${user.Username}`, {
+    fetch(process.env.CONNECTION_URI + `/users/${user.Username}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -50,7 +50,7 @@ export const ProfileView = () => {
   const handleDelete = (event) => {
     event.preventDefault();
 
-    fetch(process.env.CONNECTION_URI + `users/${user.Username}`, {
+    fetch(process.env.CONNECTION_URI + `/users/${user.Username}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
