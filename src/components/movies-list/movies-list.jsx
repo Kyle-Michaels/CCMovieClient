@@ -7,9 +7,12 @@ import Row from 'react-bootstrap/Row';
 
 export const MoviesList = () => {
   const movies = useSelector((state) => state.movies.list);
-  const filter = useSelector((state) => state.movies.filter).trim().toLowerCase();
+  const filter = useSelector((state) =>
+    state.movies.filter).trim().toLowerCase();
 
-  const filteredMovies = movies.filter((movie) => movie.title.toLowerCase().includes(filter));
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(filter)
+  );
 
   return (
     <>
@@ -20,11 +23,11 @@ export const MoviesList = () => {
         {movies.length === 0 ? (
           <Col>The list is empty!</Col>
         ) : (
-          filteredMovies.map((movie) => {
+          filteredMovies.map((movie) => (
             <Col className="mb-4" key={movie.id} md={3}>
               <MovieCard movie={movie} />
             </Col>
-          })
+          ))
         )}
       </Row>
     </>
