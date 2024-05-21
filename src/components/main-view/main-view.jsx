@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -11,10 +11,13 @@ import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from '../profile-view/profile-view';
 import { MoviesList } from '../movies-list/movies-list';
+import { GalleryView } from '../gallery-view/gallery-view';
 
 // Redux Components
+import { useSelector, useDispatch } from 'react-redux';
 import { setMovies } from '../../redux/reducers/movies';
 import { setUser } from '../../redux/reducers/user';
+import { GalleryView } from '../gallery-view/gallery-view';
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
@@ -35,7 +38,8 @@ export const MainView = () => {
     if (!token) {
       return;
     }
-    fetch(process.env.CONNECTION_URI + '/movies', {
+    // fetch(process.env.CONNECTION_URI + '/movies', {
+    fetch("http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
@@ -47,7 +51,7 @@ export const MainView = () => {
             description: movie.Description,
             image: movie.ImagePath,
             genreName: movie.Genre.Name,
-            director: movie.Director.Name
+            director: movie.Director.Name,
           };
         });
         dispatch(setMovies(moviesFromApi))
@@ -112,6 +116,20 @@ export const MainView = () => {
                 ) : (
                   <Col md={8}>
                     <MovieView />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/images"
+            element={
+              <>
+                {!user || !token ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={8}>
+                    <GalleryView />
                   </Col>
                 )}
               </>

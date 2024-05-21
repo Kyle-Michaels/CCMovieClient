@@ -17,7 +17,8 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password
     };
 
-    fetch(process.env.CONNECTION_URI + "/login", {
+    // fetch(process.env.CONNECTION_URI + "/login", {
+    fetch("http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -35,8 +36,7 @@ export const LoginView = ({ onLoggedIn }) => {
           alert('No such user');
         }
       })
-      .catch((err) => {
-        console.error("Error: " + err);
+      .catch((e) => {
         alert('Something went wrong');
       });
   };
