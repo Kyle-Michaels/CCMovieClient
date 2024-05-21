@@ -9,7 +9,8 @@ export const ToggleFavs = ({ movie }) => {
   const dispatch = useDispatch();
 
   const favorite = () => {
-    fetch(process.env.CONNECTION_URI + `/users/${user.Username}/movies/${movie.id}`, {
+    // fetch(process.env.CONNECTION_URI + `/users/${user.Username}/movies/${movie.id}`, {
+    fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/users/${user.Username}/movies/${movie.id}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -26,14 +27,14 @@ export const ToggleFavs = ({ movie }) => {
           dispatch(setUser({ user: user, token: token }));
         }
       })
-      .catch(err => {
-        console.error("Error: ", err);
-        alert("Something went wrong!");
+      .catch((e) => {
+        alert('Something went wrong');
       });
   };
 
   const unfavorite = () => {
-    fetch(process.env.CONNECTION_URI + `/users/${user.Username}/movies/${movie.id}`, {
+    // fetch(process.env.CONNECTION_URI + `/users/${user.Username}/movies/${movie.id}`, {
+    fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/users/${user.Username}/movies/${movie.id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -50,9 +51,8 @@ export const ToggleFavs = ({ movie }) => {
           dispatch(setUser({ user: user, token: token }));
         }
       })
-      .catch(err => {
-        console.error("Error: ", err);
-        alert("Something went wrong!");
+      .catch((e) => {
+        alert('Something went wrong');
       });
   };
 

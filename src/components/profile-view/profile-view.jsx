@@ -23,7 +23,8 @@ export const ProfileView = () => {
       Email: email,
       Birthday: birthday
     };
-    fetch(process.env.CONNECTION_URI + `/users/${user.Username}`, {
+    // fetch(process.env.CONNECTION_URI + `/users/${user.Username}`, {
+    fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/users/${user.Username}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -41,16 +42,16 @@ export const ProfileView = () => {
           alert("Account information was not updated!");
         }
       })
-      .catch(err => {
-        console.error("Error: ", err);
-        alert("Something went wrong!");
+      .catch((e) => {
+        alert('Something went wrong');
       });
   };
 
   const handleDelete = (event) => {
     event.preventDefault();
 
-    fetch(process.env.CONNECTION_URI + `/users/${user.Username}`, {
+    // fetch(process.env.CONNECTION_URI + `/users/${user.Username}`, {
+    fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/users/${user.Username}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
@@ -63,10 +64,9 @@ export const ProfileView = () => {
           window.location.reload();
         }
       })
-      .catch(err => {
-        console.error("Error: ", err);
-        alert("Something went wrong!");
-      })
+      .catch((e) => {
+        alert('Something went wrong');
+      });
   };
 
   return (
