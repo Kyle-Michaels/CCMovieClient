@@ -15,7 +15,6 @@ export const UploadForm = ({ token }) => {
     const formData = new FormData();
     formData.append('image', file);
     formData.append('fileName', file.name);
-    console.log(formData.get('image'));
     const response = await fetch("http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/images", {
       method: "POST",
       body: formData,
