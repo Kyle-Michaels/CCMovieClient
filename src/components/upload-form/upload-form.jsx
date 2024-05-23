@@ -13,8 +13,9 @@ export const UploadForm = ({ token }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('image', file);
     formData.append('fileName', file.name);
+    console.log(formData.get('image'));
     const response = await fetch("http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/images", {
       method: "POST",
       body: formData,
@@ -26,11 +27,11 @@ export const UploadForm = ({ token }) => {
       .then((res) => {
         console.log(res.data);
       });
-    if (response.ok) {
-      alert("File uploaded successfully!");
-      setFile("");
-      inputRef.current.value = null;
-    }
+    // if (response.ok) {
+    //   alert("File uploaded successfully!");
+    //   setFile("");
+    //   inputRef.current.value = null;
+    // }
   }
 
   return (
