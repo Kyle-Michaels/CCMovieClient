@@ -14,23 +14,21 @@ export const UploadForm = ({ token }) => {
     event.preventDefault()
     const formData = new FormData();
     formData.append('image', file);
-    formData.append('fileName', file.name);
     const response = await fetch("http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/images", {
       method: "POST",
       body: formData,
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data"
       }
     })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
+        if (res.status === 200) {
+          alert("File uploaded successfully!");
+          setFile("");
+          inputRef.current.value = null;
+        }
       });
-    // if (response.ok) {
-    //   alert("File uploaded successfully!");
-    //   setFile("");
-    //   inputRef.current.value = null;
-    // }
   }
 
   return (
