@@ -17,7 +17,7 @@ export const GalleryView = () => {
         const imagesFromApi = data.map((image) => {
           return {
             Key: image.Key,
-            Etag: image.ETag
+            ETag: image.ETag
           }
         });
         setImages(imagesFromApi)
@@ -25,9 +25,6 @@ export const GalleryView = () => {
   }, []);
   console.log(images);
 
-
-  const Key = 'resized-images/test.jpg'
-  const ETag = 'b01471573889bf9c85b699aa1f28bb42'
 
 
 
@@ -39,24 +36,27 @@ export const GalleryView = () => {
           <hr />
           <h2>Upload an Image</h2>
           <UploadForm token={token} />
-          <Col>
-            <a
-              onClick={async (event) => {
-                event.preventDefault();
-                const response =
-                  await fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/images/${Key}`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                  });
-                const file = window.URL.createObjectURL(response);
-                window.open(file, "_blank");
-              }}
-              key={ETag}
-            >
+          {images.map((image) => {
+            { console.log(image.Key, image.ETag) }
+            <Col>
+              {/* <a
+                onClick={async (event) => {
+                  event.preventDefault();
+                  const response =
+                    await fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/image?file=${image.Key}`, {
+                      headers: { Authorization: `Bearer ${token}` },
+                    });
+                  const file = window.URL.createObjectURL(response);
+                  window.open(file, "_blank");
+                }}
+                key={image.ETag}
+              > */}
               <Image
-                src={`https://a2-image-bucket.s3.us-west-1.amazonaws.com/${Key}`}
+                src={`https://a2-image-bucket.s3.us-west-1.amazonaws.com/${image.Key}`}
               />
-            </a>
-          </Col>
+              {/* </a> */}
+            </Col>
+          })}
         </Col>
       </Row>
     </>
