@@ -20,6 +20,7 @@ export const GalleryView = () => {
             ETag: image.ETag
           }
         });
+        ////////////////// filter out folder
         setImages(imagesFromApi)
       });
   }, []);
@@ -37,24 +38,29 @@ export const GalleryView = () => {
           <h2>Upload an Image</h2>
           <UploadForm token={token} />
           {images.map((image) => {
-            { console.log(image.Key, image.ETag) }
-            <Col>
-              {/* <a
+            return <Col>
+              <a
                 onClick={async (event) => {
                   event.preventDefault();
-                  const response =
-                    await fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/image?file=${image.Key}`, {
-                      headers: { Authorization: `Bearer ${token}` },
-                    });
-                  const file = window.URL.createObjectURL(response);
-                  window.open(file, "_blank");
+                  const resizedImageUrl = `https://a2-image-bucket.s3.us-west-1.amazonaws.com/${image.Key}`
+                  const originalImageUrl = resizedImageUrl.replace("resized-images/", "");
+                  const image_window = window.open("", "_blank")
+                  image_window.document.write(`
+                    <html>
+                      <head>
+                      </head>
+                      <body>
+                        <img src="${originalImageUrl}" alt="Original">
+                      </body>
+                    </html>
+                  `);
                 }}
                 key={image.ETag}
-              > */}
-              <Image
-                src={`https://a2-image-bucket.s3.us-west-1.amazonaws.com/${image.Key}`}
-              />
-              {/* </a> */}
+              >
+                <Image
+                  src={`https://a2-image-bucket.s3.us-west-1.amazonaws.com/${image.Key}`}
+                />
+              </a>
             </Col>
           })}
         </Col>
