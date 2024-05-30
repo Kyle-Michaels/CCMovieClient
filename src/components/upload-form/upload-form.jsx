@@ -28,7 +28,10 @@ export const UploadForm = ({ token }) => {
           setFile("");
           inputRef.current.value = null;
         }
-      });
+      })
+      .catch((err) => {
+        alert('Error: ' + err)
+      })
   }
 
   return (
