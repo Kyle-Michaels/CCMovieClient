@@ -20,11 +20,10 @@ export const GalleryView = () => {
             ETag: image.ETag
           }
         });
-        ////////////////// filter out folder
+        imagesFromApi.shift();
         setImages(imagesFromApi)
       });
-  }, []);
-  console.log(images);
+  }, [images]);
 
 
 
@@ -37,15 +36,17 @@ export const GalleryView = () => {
           <hr />
           <h2>Upload an Image</h2>
           <UploadForm token={token} />
-          {images.map((image) => {
-            return <Col>
-              <a
-                onClick={async (event) => {
-                  event.preventDefault();
-                  const resizedImageUrl = `https://a2-image-bucket.s3.us-west-1.amazonaws.com/${image.Key}`
-                  const originalImageUrl = resizedImageUrl.replace("resized-images/", "");
-                  const image_window = window.open("", "_blank")
-                  image_window.document.write(`
+          <br />
+          <Row md={8}>
+            {images.map((image) => {
+              return <Col key={image.ETag} className='mb-4 d-flex justify-content-center'>
+                <a
+                  onClick={async (event) => {
+                    event.preventDefault();
+                    const resizedImageUrl = `https://a2-image-bucket.s3.us-west-1.amazonaws.com/${image.Key}`
+                    const originalImageUrl = resizedImageUrl.replace("resized-images/", "original-images/");
+                    const image_window = window.open("", "_blank")
+                    image_window.document.write(`
                     <html>
                       <head>
                       </head>
@@ -54,15 +55,15 @@ export const GalleryView = () => {
                       </body>
                     </html>
                   `);
-                }}
-                key={image.ETag}
-              >
-                <Image
-                  src={`https://a2-image-bucket.s3.us-west-1.amazonaws.com/${image.Key}`}
-                />
-              </a>
-            </Col>
-          })}
+                  }}
+                >
+                  <Image
+                    src={`https://a2-image-bucket.s3.us-west-1.amazonaws.com/${image.Key}`}
+                  />
+                </a>
+              </Col>
+            })}
+          </Row>
         </Col>
       </Row>
     </>
