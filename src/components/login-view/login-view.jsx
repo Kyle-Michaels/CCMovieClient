@@ -18,7 +18,7 @@ export const LoginView = ({ onLoggedIn }) => {
     };
 
     // fetch(process.env.CONNECTION_URI + "/login", {
-    fetch("http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/login", {
+    fetch("http://a2-alb-1528498025.us-west-1.elb.amazonaws.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -39,7 +39,7 @@ export const MainView = () => {
       return;
     }
     // fetch(process.env.CONNECTION_URI + '/movies', {
-    fetch("http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/movies", {
+    fetch("http://a2-alb-1528498025.us-west-1.elb.amazonaws.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())

@@ -9,7 +9,7 @@ export const GalleryView = () => {
 
 
   useEffect(() => {
-    fetch("http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/images", {
+    fetch("http://a2-alb-1528498025.us-west-1.elb.amazonaws.com/images", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())

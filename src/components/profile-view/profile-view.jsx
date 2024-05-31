@@ -24,7 +24,7 @@ export const ProfileView = () => {
       Birthday: birthday
     };
     // fetch(process.env.CONNECTION_URI + `/users/${user.Username}`, {
-    fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/users/${user.Username}`, {
+    fetch(`http://a2-alb-1528498025.us-west-1.elb.amazonaws.com/users/${user.Username}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -51,7 +51,7 @@ export const ProfileView = () => {
     event.preventDefault();
 
     // fetch(process.env.CONNECTION_URI + `/users/${user.Username}`, {
-    fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/users/${user.Username}`, {
+    fetch(`http://a2-alb-1528498025.us-west-1.elb.amazonaws.com/users/${user.Username}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`

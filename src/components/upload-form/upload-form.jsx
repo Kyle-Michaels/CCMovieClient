@@ -14,7 +14,7 @@ export const UploadForm = ({ token }) => {
     event.preventDefault()
     const formData = new FormData();
     formData.append('image', file);
-    const response = await fetch("http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/images", {
+    const response = await fetch("http://a2-alb-1528498025.us-west-1.elb.amazonaws.com/images", {
       method: "POST",
       body: formData,
       headers: {

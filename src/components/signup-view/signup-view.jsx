@@ -17,7 +17,7 @@ export const SignupView = () => {
       Birthday: birthday
     };
     // fetch(process.env.CONNECTION_URI + '/users', {
-    fetch("http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/users", {
+    fetch("http://a2-alb-1528498025.us-west-1.elb.amazonaws.com/users", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

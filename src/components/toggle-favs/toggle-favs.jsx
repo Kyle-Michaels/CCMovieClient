@@ -10,7 +10,7 @@ export const ToggleFavs = ({ movie }) => {
 
   const favorite = () => {
     // fetch(process.env.CONNECTION_URI + `/users/${user.Username}/movies/${movie.id}`, {
-    fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/users/${user.Username}/movies/${movie.id}`, {
+    fetch(`http://a2-alb-1528498025.us-west-1.elb.amazonaws.com/users/${user.Username}/movies/${movie.id}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -34,7 +34,7 @@ export const ToggleFavs = ({ movie }) => {
 
   const unfavorite = () => {
     // fetch(process.env.CONNECTION_URI + `/users/${user.Username}/movies/${movie.id}`, {
-    fetch(`http://ec2-54-219-122-97.us-west-1.compute.amazonaws.com/users/${user.Username}/movies/${movie.id}`, {
+    fetch(`http://a2-alb-1528498025.us-west-1.elb.amazonaws.com/users/${user.Username}/movies/${movie.id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` }
     })
