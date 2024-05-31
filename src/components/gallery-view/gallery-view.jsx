@@ -9,6 +9,7 @@ export const GalleryView = () => {
 
 
   useEffect(() => {
+    console.log('Loading images')
     fetch("http://a2-alb-1528498025.us-west-1.elb.amazonaws.com/images", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -22,6 +23,11 @@ export const GalleryView = () => {
         });
         imagesFromApi.shift();
         setImages(imagesFromApi)
+        console.log('Successfully loaded images')
+      })
+      .catch((err) => {
+        alert("Failed to load images")
+        console.log("Error: " + err)
       });
   }, [images]);
 
